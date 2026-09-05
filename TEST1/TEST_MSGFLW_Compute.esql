@@ -4,6 +4,7 @@ CREATE COMPUTE MODULE TEST_MSGFLW_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		   SET OutputRoot.XMLNSC.TEST.X = 'TEST MSG';
+		   SET OutputRoot.XMLNSC.TEST.Y = 'Hello Developer you successfully tested http based application';
 	     
 	      
 		RETURN TRUE;
