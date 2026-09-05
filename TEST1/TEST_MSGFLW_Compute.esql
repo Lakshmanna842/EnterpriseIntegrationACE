@@ -3,8 +3,8 @@
 CREATE COMPUTE MODULE TEST_MSGFLW_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
-		   CALL CopyMessageHeaders();
-	       SET OutputRoot.*[I] = InputRoot.*[I];
+		   SET OutputRoot.XMLNSC.TEST.X = 'TEST MSG';
+	     
 	      
 		RETURN TRUE;
 	END;
