@@ -5,7 +5,7 @@ CREATE COMPUTE MODULE MF_Customer_Priority_Classification_Compute
 	BEGIN
 		
 		DECLARE customerType CHARACTER '';
-		DECLARE requestAmount INTEGER 0;
+		DECLARE requestAmount INTEGER;
 		SET OutputRoot.JSON.Data.requestId     = InputRoot.JSON.Data.requestId;
 		SET OutputRoot.JSON.Data.customerId    = InputRoot.JSON.Data.customerId;
 		SET OutputRoot.JSON.Data.customerType  = InputRoot.JSON.Data.customerType;
