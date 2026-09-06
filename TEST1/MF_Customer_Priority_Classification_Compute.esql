@@ -4,7 +4,7 @@ CREATE COMPUTE MODULE MF_Customer_Priority_Classification_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		
-		DECLARE customerType CHARACTER '';
+		DECLARE customerType CHARACTER ;
 		DECLARE requestAmount INTEGER;
 		SET OutputRoot.JSON.Data.requestId     = InputRoot.JSON.Data.requestId;
 		SET OutputRoot.JSON.Data.customerId    = InputRoot.JSON.Data.customerId;
