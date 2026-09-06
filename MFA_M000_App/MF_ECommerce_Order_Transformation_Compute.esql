@@ -7,6 +7,7 @@ CREATE COMPUTE MODULE MF_ECommerce_Order_Transformation_Compute
 		SET OutputRoot.Properties =InputRoot.Properties;
 		
 		-- Header Fields
+		-- Great work
 		
 		CREATE FIELD OutputRoot.JSON.Data.items IDENTITY(JSON.Array)items;
 
