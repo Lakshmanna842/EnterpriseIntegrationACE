@@ -1,0 +1,25 @@
+
+
+CREATE DATABASE MODULE CustomerAccountFlow_Database
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		 DECLARE result ROW;
+
+        SET Environment.Variables.DBData[] = PASSTHRU(
+            'SELECT CUSTOMER_ID,
+                    CUSTOMER_NAME,
+                    ACCOUNT_ID,
+                    ACCOUNT_TYPE,
+                    BALANCE
+             FROM customer_accounts
+             WHERE CUSTOMER_ID = ''C1001''
+             ORDER BY ACCOUNT_ID'
+        );
+        
+        
+        
+		RETURN TRUE;
+	END;
+
+END MODULE;
