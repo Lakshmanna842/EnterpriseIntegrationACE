@@ -1,0 +1,47 @@
+
+
+CREATE COMPUTE MODULE MF_ErrorInspector
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		-- SET OutputRoot.JSON.Data.error = 'Exception received';
+		
+		DECLARE messageNumber INTEGER;
+        DECLARE messageText CHARACTER;
+
+        DECLARE ptrException REFERENCE TO
+            InputExceptionList.*[1];
+
+        WHILE LASTMOVE(ptrException) DO
+
+            IF ptrException.Number IS NOT NULL THEN
+
+                SET messageNumber = ptrException.Number;
+                SET messageText = ptrException.Text;
+
+            END IF;
+
+            MOVE ptrException LASTCHILD;
+
+        END WHILE;
+
+        SET OutputRoot.JSON.Data.errorNumber = messageNumber;
+        SET OutputRoot.JSON.Data.errorText = messageText;
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
